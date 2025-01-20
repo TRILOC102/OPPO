@@ -3,65 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phim Hay 24h - Kiếm Tiền Cực Dễ!</title>
+    <title>Quay Số May Mắn</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
+            text-align: center;
+            margin: 20px;
         }
-        header {
-            background-color: #ff5c5c;
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
             color: white;
-            text-align: center;
-            padding: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
-        header h1 {
-            margin: 0;
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
         }
-        .content {
-            padding: 20px;
-            text-align: center;
-        }
-        .offer {
-            background-color: #fff;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 20px auto;
-            width: 80%;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .offer h2 {
-            color: #ff5c5c;
-        }
-        .offer p {
+        .result {
+            margin-top: 20px;
             font-size: 18px;
-            line-height: 1.6;
-        }
-        .image-container {
-            text-align: center;
-            margin-top: 30px;
-        }
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-        .contact {
-            margin-top: 30px;
-            font-size: 18px;
-        }
-        .contact a {
+            font-weight: bold;
             color: #007bff;
-            text-decoration: none;
         }
-        .contact a:hover {
-            text-decoration: underline;
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quay Số May Mắn</h1>
+        <p>Nhập số điện thoại của bạn và quay số để nhận thưởng!</p>
+        <input type="text" id="phoneNumber" placeholder="Nhập số điện thoại của bạn">
+        <button id="spinButton" onclick="spin()">Quay Số</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        const prizes = [
+            "100Đ", "200Đ", "300Đ", "400Đ", "500Đ", "600Đ", "700Đ", "800Đ", "900Đ",
+            "1.000VNĐ", "2.000VNĐ", "2.222VNĐ", "3.000VNĐ", "3.333VNĐ", "4.000VNĐ", 
+            "4.567VNĐ", "5.000VNĐ", "5.555VNĐ", "6.000VNĐ", "6.666VNĐ"
+        ];
+
+        let hasSpun = false;
+
+        function spin() {
+            const phoneNumber = document.getElementById("phoneNumber").value;
+            const resultDiv = document.getElementById("result");
+            const spinButton = document.getElementById("spinButton");
+
+            if (!phoneNumber) {
+                resultDiv.textContent = "Vui lòng nhập số điện thoại!";
+                resultDiv.style.color = "red";
+                return;
+            }
+
+            if (hasSpun) {
+                resultDiv.textContent = "Bạn chỉ được quay 1 lần!";
+                resultDiv.style.color = "red";
+                return;
+            }
+
+            const prize = prizes[Math.floor(Math.random() * prizes.length)];
+            resultDiv.textContent = `Chúc mừng! Bạn nhận được: ${prize}`;
+            resultDiv.style.color = "#007bff";
+
+            hasSpun = true;
+            spinButton.disabled = true;
         }
-        footer {
-            background-color: #333;
-            color: white;
+    </script>
+</body>
+</html>            color: white;
             text-align: center;
             padding: 10px;
             position: absolute;
